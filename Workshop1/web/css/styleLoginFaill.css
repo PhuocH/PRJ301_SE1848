@@ -5,16 +5,16 @@ body {
     align-items: center;
     justify-content: center;
     min-height: 100vh;
-    background-color: #f4f4f4; 
+    background-color: #f4f4f4; /* Màu nền cho toàn bộ trang */
 }
 
 .login {
-    width: 40%; 
+    width: 40%; /* 1/4 chiều rộng của trang web */
     background-color: #fff;
     padding: 20px;
     border-radius: 8px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    text-align: center;
+    text-align: center; /* Căn giữa nội dung trong hộp đăng nhập */
 }
 
 .footer {

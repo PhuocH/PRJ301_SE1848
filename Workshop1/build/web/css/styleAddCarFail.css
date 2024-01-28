@@ -5,37 +5,34 @@ body {
     align-items: center;
     justify-content: center;
     min-height: 100vh;
-    background-color: #f4f4f4;
+    background-color: #f4f4f4; /* Màu nền cho toàn bộ trang */
 }
 
-.login {
-    width: 40%;
+.container {
+  
+    width: 40%; /* Chiếm toàn bộ chiều rộng của container */
     background-color: #fff;
     padding: 20px;
     border-radius: 8px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    text-align: center;
-}
-
-.footer {
-    text-align: center;
-    margin-bottom: 20px;
+    text-align: center; /* Căn giữa nội dung trong hộp thông báo */
 }
 
 h1 {
-    color: #e74c3c;
     font-size: 70px;
+    color: #e74c3c;
 }
 
-h3 {
+p {
     color: #333;
     font-size: 40px;
     margin-top: 10px;
 }
 
 .box {
-    font-size: 40px;
     text-align: center;
+    font-size: 40px;
+    margin-top: 20px;
 }
 
 a {

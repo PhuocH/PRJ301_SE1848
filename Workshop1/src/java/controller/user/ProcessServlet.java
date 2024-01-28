@@ -23,6 +23,7 @@ public class ProcessServlet extends HttpServlet {
    private final String loginServlet = "login";
    
    private final String addCarServlet = "addcar";
+   private final String updateCarServlet = "update";
     /** 
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code> methods.
      * @param request servlet request
@@ -42,9 +43,12 @@ public class ProcessServlet extends HttpServlet {
                 url = loginServlet;
             } else if (action.equalsIgnoreCase("Create")) {
                 url = addCarServlet;
+            } else if (action.equalsIgnoreCase("Save")) {
+                url = updateCarServlet;
             }
         } finally {
             request.getRequestDispatcher(url).forward(request, response);
+            out.close();
         }
     } 
 

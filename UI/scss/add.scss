@@ -34,7 +34,8 @@ body {
 
   .submit {
     display: flex;
-    justify-content: flex-end;
+    justify-content: space-around;
+    align-items: center;
 
     input#create {
       margin-top: 7px;
@@ -48,11 +49,46 @@ body {
       font-weight: 600;
       cursor: pointer;
 
-      &#create:hover {
-        background-color: rgba(197, 197, 197, 0.995);
-        border: 1px solid rgb(162, 162, 162);
+      &:hover {
+        background-color: rgb(231, 231, 231);
+        border: 1px solid rgb(231, 231, 231);
         transition: all 0.3s;
         color: #2b2a2a;
+      }
+
+      &:focus {
+        background-color: white;
+        border: 1px solid rgba(255, 255, 255, 0.178);
+        color: black;
+      }
+    }
+
+    a {
+      text-align: center;
+      text-decoration: none;
+      background-color: rgb(61, 248, 186);
+      height: 44.99px;
+      width: 73.99px;
+      line-height: 44.99px;
+      display: inline-block;
+      font-size: 16px;
+      border-radius: 8px;
+      font-weight: 600;
+      cursor: pointer;
+      font-family: sans-serif;
+      color: rgb(0, 0, 0);
+
+      &:hover {
+        background-color: rgb(151, 255, 220);
+        color: #2b2a2a;
+        transition: all 0.3s;
+        color: #2b2a2a;
+      }
+
+      &:focus {
+        color: rgb(0, 0, 0);
+        background-color: rgb(61, 248, 186);
+        color: rgb(0, 0, 0);
       }
     }
   }

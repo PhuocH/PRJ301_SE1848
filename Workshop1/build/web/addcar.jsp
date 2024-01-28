@@ -14,18 +14,12 @@
                 var manufacturer = document.forms["addCarForm"]["txtManufacturner"].value;
 
                 if (carName === "" || manufacturer === "") {
-                    document.getElementById("successMessage").innerHTML = "";
-                    document.getElementById("errorMessage").innerHTML = "CarName and Manufacturer cannot be empty.";
+                    alert("CarName or Manufacturer cannot be empty.");
                     return false;
                 }
 
-                document.getElementById("errorMessage").innerHTML = "";
-                showSuccessMessage();
+                alert("Car created successfully!");
                 return true;
-            }
-
-            function showSuccessMessage() {
-                document.getElementById("successMessage").innerHTML = "Car added successfully!";
             }
         </script>
     </head>
@@ -66,14 +60,10 @@
                     </div>
                 </div>
                 <div class="submit">
+                    <a href="carlist">Back</a>
                     <input id="create" type="submit" value="Create" name="btnAction" />
-                    <div id="errorMessage" style="color: red;"></div>
-                    <div id="successMessage" style="color: green;"></div>
                 </div>
-
             </form>
-
-
         </div>
     </body>
 </html>

@@ -32,7 +32,8 @@ body {
 }
 .form--create .submit {
   display: flex;
-  justify-content: center;
+  justify-content: space-around;
+  align-items: center;
 }
 .form--create .submit input#create {
   margin-top: 7px;
@@ -44,6 +45,44 @@ body {
   border: 1px solid rgba(255, 255, 255, 0.178);
   color: black;
   font-weight: 600;
+  cursor: pointer;
+}
+.form--create .submit input#create:hover {
+  background-color: rgb(231, 231, 231);
+  border: 1px solid rgb(231, 231, 231);
+  transition: all 0.3s;
+  color: #2b2a2a;
+}
+.form--create .submit input#create:focus {
+  background-color: white;
+  border: 1px solid rgba(255, 255, 255, 0.178);
+  color: black;
+}
+.form--create .submit a {
+  text-align: center;
+  text-decoration: none;
+  background-color: rgb(61, 248, 186);
+  height: 44.99px;
+  width: 73.99px;
+  line-height: 44.99px;
+  display: inline-block;
+  font-size: 16px;
+  border-radius: 8px;
+  font-weight: 600;
+  cursor: pointer;
+  font-family: sans-serif;
+  color: rgb(0, 0, 0);
+}
+.form--create .submit a:hover {
+  background-color: rgb(151, 255, 220);
+  color: #2b2a2a;
+  transition: all 0.3s;
+  color: #2b2a2a;
+}
+.form--create .submit a:focus {
+  color: rgb(0, 0, 0);
+  background-color: rgb(61, 248, 186);
+  color: rgb(0, 0, 0);
 }
 
 span#title {

@@ -1,6 +1,7 @@
 <%@page import="java.util.List"%>
 <%@page import="model.Cars"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
     <head>
@@ -8,7 +9,7 @@
         <title>Home Car</title>
     </head>
     <body>
-        <a href="http://localhost:9999/workshop1/addcar.jsp">Create new</a>
+        <a href="addcar.jsp">Create new</a>
         <table border="1px">
             <tr>
                 <th>ID</th>
@@ -18,23 +19,17 @@
                 <th>ReleasedYear</th>
                 <th></th>
             </tr>
-            <%
-                List<Cars> list = (List<Cars>) request.getAttribute("carList");
-                if (list != null && !list.isEmpty()) {
-                    for (Cars c : list) {
-            %>
-            <tr>
-                <td><%=c.getCarID()%></td>
-                <td><%=c.getCarName()%></td>
-                <td><%=c.getManufacturer()%></td>
-                <td><%=c.getPrice()%></td>
-                <td><%=c.getReleasedYear()%></td>
-                <td><a>Edit</a>|<a>Details</a>|<a>Delete</a></td>
-            </tr>
-            <%
-                    }
-                }
-            %>
+            <c:forEach var="c" items="${requestScope.carList}">
+                <c:set var="id" value="${c.carID}"/>
+                <tr>
+                    <td>${id}</td>
+                    <td>${c.carName}</td>
+                    <td>${c.manufacturer}</td>
+                    <td>${c.price}</td>
+                    <td>${c.releasedYear}</td>
+                    <td><a href="update?id=${id}">Edit</a>|<a>Details</a>|<a>Delete</a></td>
+                </tr>
+            </c:forEach>
         </table>
     </body>
 </html>

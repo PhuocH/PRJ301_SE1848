@@ -83,20 +83,20 @@ public class CarDAO extends DBContext {
         }
         return null;
     }
-    
+
     public Cars getCarById(int id) throws SQLException, Exception {
         ResultSet rs = null;
         PreparedStatement preStm = null;
         Connection cnn = null;
-        
+
         try {
             cnn = getConnection();
             String sql = "SELECT * FROM Cars WHERE CarID = ?";
             preStm = cnn.prepareStatement(sql);
             preStm.setInt(1, id);
             rs = preStm.executeQuery();
-            
-            if (rs.next()) {                
+
+            if (rs.next()) {
                 Cars c = new Cars(rs.getInt("carID"), rs.getString("carName"), rs.getString("manufacturer"),
                         rs.getFloat("price"), rs.getInt("releasedYear"));
                 return c;
@@ -116,12 +116,12 @@ public class CarDAO extends DBContext {
         }
         return null;
     }
-    
+
     public void addACar(Cars c) throws Exception {
         Connection cnn = null;
         PreparedStatement preStm = null;
         ResultSet rs = null;
-        
+
         try {
             cnn = getConnection();
             String sql = "INSERT INTO Cars (CarID, CarName, Manufacturer, Price, ReleasedYear) VALUES(?, ?, ?, ?, ?)";
@@ -131,7 +131,7 @@ public class CarDAO extends DBContext {
             preStm.setString(3, c.getManufacturer());
             preStm.setFloat(4, c.getPrice());
             preStm.setInt(5, c.getReleasedYear());
-            preStm.executeUpdate();            
+            preStm.executeUpdate();
         } catch (Exception e) {
             throw e;
         } finally {
@@ -146,7 +146,7 @@ public class CarDAO extends DBContext {
             }
         }
     }
-    
+
     //Đếm ID
     public int countListCar(List<Cars> listCar) {
         int count = 0;
@@ -156,5 +156,31 @@ public class CarDAO extends DBContext {
             }
         }
         return count;
+    }
+
+    public void getUpdateACar(Cars c) throws Exception {
+        Connection cnn = null;
+        PreparedStatement preStm = null;
+
+        try {
+            cnn = getConnection();
+            String sql = "UPDATE Cars SET CarName = ?, Manufacturer = ?, Price = ?, ReleasedYear = ? WHERE CarID = ?";
+            preStm = cnn.prepareStatement(sql);
+            preStm.setString(1, c.getCarName());
+            preStm.setString(2, c.getManufacturer());
+            preStm.setFloat(3, c.getPrice());
+            preStm.setInt(4, c.getReleasedYear());
+            preStm.setInt(5, c.getCarID());
+            preStm.executeUpdate();
+        } catch (Exception e) {
+            throw e;
+        } finally {
+            if (preStm != null) {
+                preStm.close();
+            }
+            if (cnn != null) {
+                cnn.close();
+            }
+        }
     }
 }

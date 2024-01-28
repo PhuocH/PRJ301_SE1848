@@ -22,7 +22,6 @@ import model.Cars;
 public class AddCarServlet extends HttpServlet {
 
     private final String carlistServlet = "carlist";
-    private final String carFailPage = "addcarfail.html";
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -42,8 +41,8 @@ public class AddCarServlet extends HttpServlet {
         String manufacturner = request.getParameter("txtManufacturner");
         String priceRaw = request.getParameter("txtPrice");
         String releasedYearRaw = request.getParameter("txtReleasedYear");
-        String url = carFailPage;
-
+        String url;
+        
         int id, releasedYear;
         float price;
 
@@ -52,7 +51,6 @@ public class AddCarServlet extends HttpServlet {
             id = Integer.parseInt(idRaw);
             price = Float.parseFloat(priceRaw);
             releasedYear = Integer.parseInt(releasedYearRaw);
-            Cars c = carDao.getCarById(id);
 
             if (!carName.isEmpty() || !manufacturner.isEmpty()) {
                 Cars cNew = new Cars(id, carName, manufacturner, price, releasedYear);
