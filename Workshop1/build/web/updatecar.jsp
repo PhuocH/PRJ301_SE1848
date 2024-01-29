@@ -29,7 +29,7 @@
         <span id="title">Update Car</span>
         <div class="form--create">
             <img
-                src="https://c.wallhere.com/photos/68/ea/1920x1080_px_car_Chevrolet_Camaro_Bumblebee-694904.jpg!d"
+                src="https://segalas.es/wp-content/uploads/2021/02/portada-taller.jpg"
                 alt=""
                 />
             <c:set var="c" value="${requestScope.updateByID}"/>

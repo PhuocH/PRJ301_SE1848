@@ -5,6 +5,7 @@
 
 package controller.car;
 
+import dal.CarDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;
@@ -12,6 +13,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import model.Cars;
 
 /**
  *
@@ -20,6 +22,8 @@ import javax.servlet.http.HttpServletResponse;
 @WebServlet(name="DetailsServlet", urlPatterns={"/details"})
 public class DetailsServlet extends HttpServlet {
    
+    private final String detailsPage = "detailscar.jsp";
+    
     /** 
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code> methods.
      * @param request servlet request
@@ -30,8 +34,17 @@ public class DetailsServlet extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
     throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        try {
-
+        try (PrintWriter out = response.getWriter()) {
+            /* TODO output your page here. You may use following sample code. */
+            out.println("<!DOCTYPE html>");
+            out.println("<html>");
+            out.println("<head>");
+            out.println("<title>Servlet DetailsServlet</title>");  
+            out.println("</head>");
+            out.println("<body>");
+            out.println("<h1>Servlet DetailsServlet at " + request.getContextPath () + "</h1>");
+            out.println("</body>");
+            out.println("</html>");
         }
     } 
 
@@ -46,7 +59,21 @@ public class DetailsServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
     throws ServletException, IOException {
-        processRequest(request, response);
+        String idRaw = request.getParameter("id");
+        String url = detailsPage;
+        int id;
+        
+        CarDAO carDao = new CarDAO();
+        try {
+            id = Integer.parseInt(idRaw);
+            Cars c = carDao.getCarById(id);
+            request.setAttribute("dataCar", c);
+            url = detailsPage;
+        } catch (Exception e) {
+            System.out.println("Error: " + e.getMessage());
+        } finally {
+            request.getRequestDispatcher(url).forward(request, response);
+        }
     } 
 
     /** 

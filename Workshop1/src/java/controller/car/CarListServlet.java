@@ -24,12 +24,11 @@ import model.Cars;
 public class CarListServlet extends HttpServlet {
 
     private final String carListPage = "carlist.jsp";
-    private final String invalidData = "invalidData";
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        String url = invalidData;
+        String url = carListPage;
         PrintWriter out = response.getWriter();
         try {
             /* TODO output your page here. You may use following sample code. */

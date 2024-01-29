@@ -5,10 +5,9 @@
         <group>
             <file>file:/D:/FPT-PRJ301/PRJ301_SE1848/Workshop1/web/carlist.jsp</file>
             <file>file:/D:/FPT-PRJ301/PRJ301_SE1848/Workshop1/src/java/controller/car/UpdateServlet.java</file>
+            <file>file:/D:/FPT-PRJ301/PRJ301_SE1848/Workshop1/src/java/controller/car/DetailsServlet.java</file>
+            <file>file:/D:/FPT-PRJ301/PRJ301_SE1848/Workshop1/web/updatecar.jsp</file>
             <file>file:/D:/FPT-PRJ301/PRJ301_SE1848/Workshop1/src/java/controller/car/AddCarServlet.java</file>
-            <file>file:/D:/FPT-PRJ301/PRJ301_SE1848/Workshop1/src/java/controller/user/ProcessServlet.java</file>
-            <file>file:/D:/FPT-PRJ301/PRJ301_SE1848/Workshop1/web/addcar.jsp</file>
-            <file>file:/D:/FPT-PRJ301/PRJ301_SE1848/Workshop1/web/css/styleAddCar.css</file>
         </group>
     </open-files>
 </project-private>

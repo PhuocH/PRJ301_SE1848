@@ -52,7 +52,7 @@ public class AddCarServlet extends HttpServlet {
             price = Float.parseFloat(priceRaw);
             releasedYear = Integer.parseInt(releasedYearRaw);
 
-            if (!carName.isEmpty() || !manufacturner.isEmpty()) {
+            if (!carName.isEmpty() || !manufacturner.isEmpty() || price > 0 || releasedYear > 1800) {
                 Cars cNew = new Cars(id, carName, manufacturner, price, releasedYear);
                 carDao.addACar(cNew);
                 url = carlistServlet;

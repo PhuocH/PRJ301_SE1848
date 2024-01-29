@@ -8,7 +8,6 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 import model.Cars;
-import model.Manufacturners;
 
 public class CarDAO extends DBContext {
 
@@ -49,39 +48,6 @@ public class CarDAO extends DBContext {
             }
         }
         return list;
-    }
-
-    public Manufacturners getManufacturers(int id) throws SQLException, Exception {
-        List<Cars> list = new ArrayList<>();
-        ResultSet rs = null;
-        PreparedStatement preStm = null;
-        Connection cnn = null;
-
-        try {
-            cnn = getConnection();
-            String sql = "SELECT * FROM Manufacturners WHERE CarID = ?";
-            preStm = cnn.prepareStatement(sql);
-            preStm.setInt(1, id);
-            rs = preStm.executeQuery();
-
-            while (rs.next()) {
-                Manufacturners mf = new Manufacturners(rs.getInt("CarID"), rs.getString("Manufacsturner"));
-                return mf;
-            }
-        } catch (Exception e) {
-            throw e;
-        } finally {
-            if (preStm != null) {
-                preStm.close();
-            }
-            if (cnn != null) {
-                cnn.close();
-            }
-            if (rs != null) {
-                rs.close();
-            }
-        }
-        return null;
     }
 
     public Cars getCarById(int id) throws SQLException, Exception {
@@ -171,6 +137,28 @@ public class CarDAO extends DBContext {
             preStm.setFloat(3, c.getPrice());
             preStm.setInt(4, c.getReleasedYear());
             preStm.setInt(5, c.getCarID());
+            preStm.executeUpdate();
+        } catch (Exception e) {
+            throw e;
+        } finally {
+            if (preStm != null) {
+                preStm.close();
+            }
+            if (cnn != null) {
+                cnn.close();
+            }
+        }
+    }
+
+    public void getDelete(int id) throws Exception {
+        Connection cnn = null;
+        PreparedStatement preStm = null;
+
+        try {
+            cnn = getConnection();
+            String sql = "DELETE FROM Cars WHERE CarID = ?";
+            preStm = cnn.prepareStatement(sql);
+            preStm.setInt(1, id);
             preStm.executeUpdate();
         } catch (Exception e) {
             throw e;
