@@ -13,7 +13,7 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>JSP Page</title>
+        <title>Showroom Car</title>
         <link rel="stylesheet" href="./css/styleCarList.css"/>
     </head>
     <body>
@@ -27,10 +27,10 @@
             </ul>
         </div>
 
-        <h2>Car List</h2>
-
+        <h2 style="margin: 45px 0; font-size: 50px">Car List</h2>
+        <span>${sessionScope.account.userName}</span>
+        
         <form action="ProcessServlet">
-            <a href="addcar.jsp" >Create New</a>
             <table>
                 <thead>
                     <tr>
@@ -39,11 +39,6 @@
                         <th>Manufacturer</th>
                         <th>Price</th>
                         <th>ReleasedYear</th>
-                        <th >
-                            <div class="header-app">
-                                Application
-                            </div>
-                        </th>
                     </tr>
                 </thead>
                 <c:forEach var="c" items="${requestScope.carList}">
@@ -54,20 +49,7 @@
                             <td>${c.carName}</td>
                             <td>${c.manufacturer}</td>
                             <td>${c.price}</td>
-                            <td>${c.releasedYear}</td>                            
-                            <td class="app">
-                                <div class="Edit">
-                                    <a href="update?id=${id}">Edit</a>
-                                </div>
-
-                                <div class="Details">
-                                    <a href="details?id=${id}">Details</a>
-                                </div>
-
-                                <div class="Delete">
-                                    <a href="delete?id=${id}">Delete</a>
-                                </div>
-                            </td>   
+                            <td>${c.releasedYear}</td>
                         </tr>
                     </tbody>
                 </c:forEach>

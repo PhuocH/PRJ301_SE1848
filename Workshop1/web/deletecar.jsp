@@ -18,7 +18,7 @@
                     var form = document.createElement("form");
                     form.setAttribute("method", "post");
                     form.setAttribute("action", "delete");
-
+                    
                     var hiddenField = document.createElement("input");
                     hiddenField.setAttribute("type", "hidden");
                     hiddenField.setAttribute("name", "txtCarID");
@@ -63,7 +63,7 @@
             </table>
             <div>
                 <input onclick="doDelete('${c.carID}')" type="button" name="btnAction" value="Delete">
-                <a  href="carlist">Back to List</a>
+                <a href="carlist">Back to List</a>
             </div>   
         </form>
     </body>

@@ -48,7 +48,7 @@
                 </thead>
                 <c:forEach var="c" items="${requestScope.carList}">
                     <c:set var="id" value="${c.carID}"/>
-                    <tbody>                        
+                    <tbody>
                         <tr>
                             <td>${id}</td>
                             <td>${c.carName}</td>

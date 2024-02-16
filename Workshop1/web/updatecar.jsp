@@ -19,7 +19,7 @@
                     return false;
                 }
 
-                alert("Car created successfully!");
+                alert("Update car successfully!");
                 return true;
             }
         </script>

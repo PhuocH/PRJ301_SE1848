@@ -3,53 +3,49 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Servlet.java to edit this template
  */
 
-package controller.user;
+package controller.car;
 
-import dal.UserDAO;
+import dal.CarDAO;
 import java.io.IOException;
+import java.io.PrintWriter;
+import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
-import model.User;
+import model.Cars;
 
 /**
  *
  * @author ADMIN
  */
-@WebServlet(name="LoginServlet", urlPatterns={"/login"})
-public class LoginServlet extends HttpServlet {
-   private final String carshopAdminServlet = "carlist";
-   private final String invalidPage = "Invalid.html";
-   private final String carshopUserServlet = "carlistuser";
+@WebServlet(name="CarListUserServlet", urlPatterns={"/carlistuser"})
+public class CarListUserServlet extends HttpServlet {
+    private final String carlistUserPage = "carlistuser.jsp";
     
+    /** 
+     * Processes requests for both HTTP <code>GET</code> and <code>POST</code> methods.
+     * @param request servlet request
+     * @param response servlet response
+     * @throws ServletException if a servlet-specific error occurs
+     * @throws IOException if an I/O error occurs
+     */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
     throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        String username = request.getParameter("txtUsername");
-        String password = request.getParameter("txtPassword");
-        String url;
-        HttpSession session = request.getSession();
-        
+        PrintWriter out = response.getWriter();
+        String url = carlistUserPage;
         try {
-            UserDAO userD = new UserDAO();
-            User user = userD.login(username, password);
-            
-            if (user != null) {
-                session.setAttribute("account", user);
-                if (user.isIsAdmin()) {
-                    url = carshopAdminServlet;
-                } else {
-                    url = carshopUserServlet;
-                }
-            } else {
-                url = invalidPage;
-            }
-            response.sendRedirect(url);
-        } catch (Exception e) {
-            System.out.println(e);
+           CarDAO carDao = new CarDAO();
+            List<Cars> list = carDao.getAllCar();
+            request.setAttribute("carList", list);
+            url = carlistUserPage;
+        } catch (Exception e){
+            out.println("Error: " + e.getMessage());
+        } finally {
+            request.getRequestDispatcher(url).forward(request, response);
+            out.close();
         }
     } 
 
