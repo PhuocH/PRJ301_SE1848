@@ -40,11 +40,12 @@
         </div>
 
         <h2>Car List</h2>
-        <h2 style="color: red">Welcome to ${sessionScope.account.userName}</h2>
+        <h2 style="color: red">Welcome to ${sessionScope.account.lastname}</h2>
 
         <form action="process">
             <a href="process?action=add" >Create New</a>
             <a href="process?action=logout">Logout</a>
+            <a href="carlist?user=${sessionScope.user.lastname}&action=viewUser">Check View User</a>
             <table>
                 <thead>
                     <tr>

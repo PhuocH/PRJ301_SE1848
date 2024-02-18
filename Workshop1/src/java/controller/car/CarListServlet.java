@@ -17,13 +17,12 @@ import javax.servlet.http.HttpSession;
 import model.Cars;
 import model.User;
 
-
 /**
  *
  * @author ADMIN
  */
 @WebServlet(name = "CarListServlet", urlPatterns = {"/carlist"})
-public class CarListServlet extends HttpServlet{
+public class CarListServlet extends HttpServlet {
 
     private final String carListPage = "carlist.jsp";
     private final String carlistUserPage = "carlistuser.jsp";
@@ -35,18 +34,22 @@ public class CarListServlet extends HttpServlet{
         response.setContentType("text/html;charset=UTF-8");
         String url = carListPage;
         PrintWriter out = response.getWriter();
+        String actionURL = request.getParameter("action");
         HttpSession session = request.getSession();
+        User user = (User) session.getAttribute("account");
         try {
-            if (session.getAttribute("account") != null) {
+            if (user != null) {
                 CarDAO carDao = new CarDAO();
-                User user = (User) session.getAttribute("account");
+                List<Cars> list = carDao.getAllCar();
+                request.setAttribute("carList", list);
                 if (user.isIsAdmin()) {
                     url = carListPage;
                 } else {
                     url = carlistUserPage;
                 }
-                List<Cars> list = carDao.getAllCar();
-                request.setAttribute("carList", list);
+                if (user.isIsAdmin() && actionURL.equalsIgnoreCase("viewUser")) {
+                    url = carlistUserPage;
+                }
             } else {
                 url = loginPage;
             }

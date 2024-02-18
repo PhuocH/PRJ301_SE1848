@@ -10,12 +10,13 @@
 <%@page import="java.util.List"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%
-    User user = (User) session.getAttribute("account");
-    if (user == null) {
-        response.sendRedirect("carlist");
-    }
-%>
+
+<c:set var="user" value="${sessionScope.account}" />
+
+<c:if test="${empty user}">
+    <c:redirect url="carlist" />
+</c:if>
+
 <!DOCTYPE html>
 <html>
     <head>
@@ -35,10 +36,13 @@
         </div>
 
         <h2 style="margin: 45px 0 0 0; font-size: 50px">Car List</h2>
-        <h2>${sessionScope.account.userName}</h2>
+        <h2>${sessionScope.account.lastname}</h2>
 
         <form action="process">
             <a href="process?action=logout">Logout</a>
+            <c:if test="${sessionScope.account.isAdmin}">
+                <a href="carlist">Back to Admin Page</a>
+            </c:if>
             <table>
                 <thead>
                     <tr>

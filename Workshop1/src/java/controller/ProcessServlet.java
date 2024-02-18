@@ -23,7 +23,6 @@ public class ProcessServlet extends HttpServlet {
     private final String loginPage = "login.jsp";
     private final String logoutServlet = "logout";
 
-    private final String addCarPage = "addcar.jsp";
     private final String addCarServlet = "addcar";
 
     private final String updateCarPage = "updatecar.jsp";
