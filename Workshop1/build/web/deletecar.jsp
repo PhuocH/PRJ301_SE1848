@@ -4,6 +4,7 @@
     Author     : vipha
 --%>
 
+<%@page import="model.User"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
@@ -18,7 +19,7 @@
                     var form = document.createElement("form");
                     form.setAttribute("method", "post");
                     form.setAttribute("action", "delete");
-                    
+
                     var hiddenField = document.createElement("input");
                     hiddenField.setAttribute("type", "hidden");
                     hiddenField.setAttribute("name", "txtCarID");
@@ -33,8 +34,15 @@
         </script>
     </head>
 
+    <%
+        User user = (User) session.getAttribute("account");
+        if (user == null || user.isIsAdmin() == false) {
+            response.sendRedirect("carlist");
+        }
+    %>
+
     <body>
-        <img src="https://png.pngtree.com/thumb_back/fw800/background/20230425/pngtree-parking-lot-with-cars-in-it-image_2515654.jpg" alt="alt"/>
+        <img src="./image/deleteimg.jpg" alt="alt"/>
         <h1>Delete Car</h1>
         <h3>Car</h3>
         <c:set var="c" value="${requestScope.dataCar}"/>

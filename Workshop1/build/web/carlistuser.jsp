@@ -5,10 +5,17 @@
 --%>
 
 
+<%@page import="model.User"%>
 <%@page import="model.Cars"%>
 <%@page import="java.util.List"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%
+    User user = (User) session.getAttribute("account");
+    if (user == null) {
+        response.sendRedirect("carlist");
+    }
+%>
 <!DOCTYPE html>
 <html>
     <head>
@@ -17,7 +24,7 @@
         <link rel="stylesheet" href="./css/styleCarList.css"/>
     </head>
     <body>
-        <img src="https://www.lamborghini.com/sites/it-en/files/DAM/lamborghini/face_react/contact_us/over/contact_us_over_01_m.jpg" width="width" height="height" alt="alt"/>
+        <img src="./image/showroom.jpg" width="width" height="height" alt="alt"/>
         <h1>Home Page</h1>
         <div>
             <ul class="header">
@@ -27,10 +34,11 @@
             </ul>
         </div>
 
-        <h2 style="margin: 45px 0; font-size: 50px">Car List</h2>
-        <span>${sessionScope.account.userName}</span>
-        
-        <form action="ProcessServlet">
+        <h2 style="margin: 45px 0 0 0; font-size: 50px">Car List</h2>
+        <h2>${sessionScope.account.userName}</h2>
+
+        <form action="process">
+            <a href="process?action=logout">Logout</a>
             <table>
                 <thead>
                     <tr>

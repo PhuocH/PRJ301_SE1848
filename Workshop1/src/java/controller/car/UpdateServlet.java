@@ -11,7 +11,9 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import model.Cars;
+import model.User;
 
 /**
  *
@@ -22,6 +24,7 @@ public class UpdateServlet extends HttpServlet {
 
     private final String updatePage = "updatecar.jsp";
     private final String carlistServlet = "carlist";
+    private final String loginPage = "login.jsp";
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -35,7 +38,7 @@ public class UpdateServlet extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        
+
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
@@ -50,20 +53,26 @@ public class UpdateServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        HttpSession session = request.getSession();
         String idRaw = request.getParameter("id");
-        String url;
+        String url = loginPage;
         int id;
         CarDAO carDao = new CarDAO();
+        User user = (User) session.getAttribute("account");
         try {
-            id = Integer.parseInt(idRaw);
-
-            Cars c = carDao.getCarById(id);
-            url = updatePage;
-            request.setAttribute("updateByID", c);
-            request.getRequestDispatcher(url).forward(request, response);
-
+            if (session.getAttribute("account") != null && user.isIsAdmin()) {
+                id = Integer.parseInt(idRaw);
+                Cars c = carDao.getCarById(id);
+                url = updatePage;
+                request.setAttribute("updateByID", c);
+            } else {
+                url = carlistServlet;
+            }
         } catch (Exception e) {
             System.out.println("Error: " + e.getMessage());
+        } finally {
+            request.getRequestDispatcher(url).forward(request, response);
+
         }
     }
 

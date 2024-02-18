@@ -3,27 +3,24 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Servlet.java to edit this template
  */
 
-package controller.car;
+package controller.user;
 
-import dal.CarDAO;
 import java.io.IOException;
-import java.io.PrintWriter;
-import java.util.List;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import model.Cars;
+import javax.servlet.http.HttpSession;
 
 /**
  *
- * @author ADMIN
+ * @author minhphuoc
  */
-@WebServlet(name="CarListUserServlet", urlPatterns={"/carlistuser"})
-public class CarListUserServlet extends HttpServlet {
-    private final String carlistUserPage = "carlistuser.jsp";
-    
+@WebServlet(name="LogOutServlet", urlPatterns={"/logout"})
+public class LogOutServlet extends HttpServlet {
+   
     /** 
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code> methods.
      * @param request servlet request
@@ -34,19 +31,9 @@ public class CarListUserServlet extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
     throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        PrintWriter out = response.getWriter();
-        String url = carlistUserPage;
-        try {
-           CarDAO carDao = new CarDAO();
-            List<Cars> list = carDao.getAllCar();
-            request.setAttribute("carList", list);
-            url = carlistUserPage;
-        } catch (Exception e){
-            out.println("Error: " + e.getMessage());
-        } finally {
-            request.getRequestDispatcher(url).forward(request, response);
-            out.close();
-        }
+        HttpSession session = request.getSession();
+        session.removeAttribute("account");
+        response.sendRedirect("login.jsp");
     } 
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

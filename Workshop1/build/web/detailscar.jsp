@@ -4,6 +4,7 @@
     Author     : vipha
 --%>
 
+<%@page import="model.User"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
@@ -14,8 +15,15 @@
         <link rel="stylesheet" href="./css/styleDetailsCar.css"/>
     </head>
 
+    <%
+        User user = (User) session.getAttribute("account");
+        if (user == null || user.isIsAdmin() == false) {
+            response.sendRedirect("carlist");
+        }
+    %>
+
     <body>
-        <img src="https://gcs.tripi.vn/public-tripi/tripi-feed/img/472958Sqd/lamborghini-revuelto-featured-gear.jpg" alt="alt"/>
+        <img src="./image/detailImg.jpg" alt="alt"/>
         <h1>Car Details</h1>
         <h3>Car</h3>
         <c:set var="c" value="${requestScope.dataCar}"/>

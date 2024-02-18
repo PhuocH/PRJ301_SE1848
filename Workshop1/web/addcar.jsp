@@ -1,3 +1,5 @@
+<%@page import="model.User"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page import="java.util.List"%>
 <%@page import="model.Cars"%>
 <%@page import="dal.CarDAO"%>
@@ -24,23 +26,26 @@
         </script>
     </head>
 
-    <% CarDAO carDao = new CarDAO();
-        List<Cars> list = carDao.getAllCar();
-        int countCarID = 1 + carDao.countListCar(list);
+    <%
+        User user = (User) session.getAttribute("account");
+        if (user == null || user.isIsAdmin() == false) {
+            response.sendRedirect("carlist");
+        }
     %>
+    
 
     <body>
         <span id="title">Add Car</span>
         <div class="form--create">
             <img
-                src="https://img.freepik.com/free-vector/realistic-car-headlights-ad-composition-headlights-with-green-purple-illumination_1284-56577.jpg?size=626&ext=jpg&ga=GA1.1.1448711260.1706227200&semt=ais"
+                src="./image/addimg.avif"
                 alt=""
                 />
             <form action="process" name="addCarForm" onsubmit="return validateForm()" method="post">
                 <div class="form--add">
                     <div class="carId">
                         <span>CarID</span><br />
-                        <input type="text" name="txtCarID" value="<%=countCarID%>" readonly /><br />
+                        <input type="text" name="txtCarID" value="${requestScope.countCarID}" readonly /><br />
                     </div>
                     <div class="carName">
                         <span>CarName</span><br />

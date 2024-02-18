@@ -56,6 +56,4 @@ public class User {
         return String.format("UserName: %s, Password: %s, LastName: %s, isAdmin: %b", 
                 userName, password, lastname, isAdmin);
     }
-    
-    
 }

@@ -5,10 +5,14 @@
 --%>
 
 
+<%@page import="dal.CarDAO"%>
+<%@page import="model.User"%>
 <%@page import="model.Cars"%>
 <%@page import="java.util.List"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+
+
 <!DOCTYPE html>
 <html>
     <head>
@@ -17,7 +21,15 @@
         <link rel="stylesheet" href="./css/styleCarList.css"/>
     </head>
     <body>
-        <img src="https://www.lamborghini.com/sites/it-en/files/DAM/lamborghini/face_react/contact_us/over/contact_us_over_01_m.jpg" width="width" height="height" alt="alt"/>
+
+        <%
+            User user = (User) session.getAttribute("account");
+            if (user == null || user.isIsAdmin() == false) {
+                response.sendRedirect("carlist");
+            }
+        %>
+
+        <img src="./image/showroom.jpg" width="width" height="height" alt="alt"/>
         <h1>Home Page</h1>
         <div>
             <ul class="header">
@@ -28,9 +40,11 @@
         </div>
 
         <h2>Car List</h2>
+        <h2 style="color: red">Welcome to ${sessionScope.account.userName}</h2>
 
-        <form action="ProcessServlet">
-            <a href="addcar.jsp" >Create New</a>
+        <form action="process">
+            <a href="process?action=add" >Create New</a>
+            <a href="process?action=logout">Logout</a>
             <table>
                 <thead>
                     <tr>

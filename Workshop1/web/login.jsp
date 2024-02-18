@@ -11,10 +11,10 @@
       <div class="form--login">
         <img
           id="bggara"
-          src="https://png.pngtree.com/background/20231016/original/pngtree-3d-rendering-of-garage-with-roller-door-opened-picture-image_5583488.jpg"
+          src="./image/login.jpg"
           alt=""
         />
-        <form action="process" method="post">
+        <form action="login" method="post">
           <span>Hello Admin</span><br />
           <input id="ip1" name="txtUsername" placeholder="Username" />
           <br />
