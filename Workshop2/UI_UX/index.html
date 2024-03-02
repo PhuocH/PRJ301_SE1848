@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="css/index.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+  <title>Document</title>
+</head>
+
+<body>
+  <div class="header">
+    <div class="top">
+      <div class="left">
+        <a href=""><img src="img/logo-FPT-Polytechnic-.png" alt="" /></a>
+      </div>
+      <div class="mid">
+        <form action="">
+          <input type="text" placeholder="Bạn tìm gì.." />
+          <i class="fa-solid fa-magnifying-glass"></i>
+        </form>
+      </div>
+      <div class="right">
+        <a href="">
+          <i class="fa-solid fa-cart-shopping"></i>
+          <span>Giỏ hàng</span>
+        </a>
+        <a href="">
+          <i class="fa-regular fa-user"></i>
+          <span>Đăng nhập</span>
+        </a>
+      </div>
+    </div>
+    <div class="main">
+      <ul class="main-menu">
+        <li>
+          <a href=""><i class="fa-solid fa-mobile"></i><span>Điện thoại</span></a>
+        </li>
+        <li>
+          <a href=""><i class="fa-solid fa-laptop"></i><span>Laptop</span></a>
+        </li>
+        <li>
+          <a href=""><i class="fa-solid fa-clock"></i><span>Smartwatch</span></a>
+        </li>
+      </ul>
+    </div>
+  </div>
+  <div class="body">
+    <div class="container">
+      <div class="image-container">
+        <div class="centered-images">
+          <a href=""><img src="./img/galaxy-s24-th2-sliding.png" alt=""></a>
+          <a href=""><img src="./img/iphone-15-pro-max-sliding-kvtet-ban2.png" alt=""></a>
+          <a href=""><img src="./img/fit3-720-220-720x220-1.png" alt=""></a>
+        </div>
+      </div>
+      <button id="prevButton">&#10094;</button>
+      <button id="nextButton">&#10095;</button>
+    </div>
+  </div>
+
+  <div class="footter">
+
+  </div>
+</body>
+<script>
+  // Lấy danh sách các ảnh
+  var images = document.querySelectorAll('.centered-images img');
+  var currentImageIndex = 0;
+
+  // Hiển thị ảnh đầu tiên
+  images[currentImageIndex].style.display = 'block';
+
+  // Xử lý sự kiện khi nhấn nút chuyển tiếp
+  document.getElementById('nextButton').addEventListener('click', function () {
+    images[currentImageIndex].style.display = 'none';
+    currentImageIndex = (currentImageIndex + 1) % images.length;
+    images[currentImageIndex].style.display = 'block';
+  });
+
+  document.getElementById('prevButton').addEventListener('click', function () {
+    images[currentImageIndex].style.display = 'none';
+    currentImageIndex = (currentImageIndex - 1 + images.length) % images.length;
+    images[currentImageIndex].style.display = 'block';
+  });
+</script>
+
+</html>

@@ -1,0 +1,55 @@
+.header .top {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+}
+.header .top .left img {
+  width: 160px;
+  height: 80px;
+}
+.header .main-menu {
+  display: flex;
+  justify-content: space-evenly;
+}
+.body .container {
+  position: relative;
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+.body .container .image-container {
+  position: relative;
+  height: auto;
+  text-align: center;
+  overflow-x: hidden;
+}
+.body .container .image-container .centered-images {
+  white-space: nowrap;
+}
+.body .container .image-container .centered-images img {
+  display: inline-block;
+  vertical-align: middle;
+  max-width: 100%;
+  height: auto;
+}
+.body .container button {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background-color: transparent;
+  border: none;
+  font-size: 24px;
+  cursor: pointer;
+}
+.body .container button:hover {
+  background-color: rgba(0, 0, 0, 0.1);
+}
+.body .container button#prevButton {
+  left: 10px;
+}
+.body .container button#nextButton {
+  right: 10px;
+}
+.body .hidden {
+  display: none;
+}/*# sourceMappingURL=index.css.map */
